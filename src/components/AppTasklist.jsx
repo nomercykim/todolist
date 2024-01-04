@@ -3,17 +3,24 @@ import React, { useState } from 'react';
 export default function AppTodolist() {
     const [todoList, setTodolist] =useState(initialList); //list 목록 관리
     const [todoInput, setTodoInput] =useState(''); // 입력값 관리
-    const [checked, setChecked] = useState(false); // all(false, true), active(false), done(true) 표시를 위한 상태 관리
-    const handleSubmit =(e)=>{e.preventDefault();}
-
+    const handleChange = (id) => { // all(false, true), active(false), done(true) 표시를 위한 상태 관리
+        setTodolist((prev) =>{
+            return prev.map(item => {
+                if(item.id === id){
+                    return {...item, checked: !item.checked}; // active/done 설정을 위해 반대값을 줌.
+                }
+                return item;
+            });
+        });
+    }
+    //const handleSubmit =(e)=>{e.preventDefault();}
     const setKey = () =>{
         return new Date().getTime()+Math.random(); // key값 설정
     }
-
-    const handleChange = () => setChecked((prev) => !prev) // active/done 설정을 위해 반대값을 줌.
+    
     const handleAdd = () =>{
         if(todoInput !== ''){
-            setTodolist([...todoList, {id:setKey(), text:todoInput, } ])
+            setTodolist([...todoList, {id:setKey(), text:todoInput, checked:false} ])
             setTodoInput('');
         }
     }
@@ -40,7 +47,7 @@ export default function AppTodolist() {
 
                 {todoList.map((todoList)=>(
                     <li key={todoList.id}>
-                        <input type="checkbox" value={checked} onChange={handleChange}/>                        
+                        <input type="checkbox" checked={todoList.checked} onChange={()=>handleChange(todoList.id)}/>                        
                         {todoList.text}
                         <button onClick={()=>handleDelete(todoList.id)}>delete</button>
                     </li>
