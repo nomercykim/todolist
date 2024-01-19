@@ -125,7 +125,7 @@ export default function AppTodolist() {
                         onChange={(e) => setTodoInput(e.target.value)}
                         onKeyPress={handleEnter}
                     />
-                    <button onClick={handleAdd}>add</button>
+                    <button className={styles.addButton}onClick={handleAdd}>add</button>
                 </div>
             </div>
         </div>

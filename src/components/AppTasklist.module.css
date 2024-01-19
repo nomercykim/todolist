@@ -111,3 +111,16 @@ button:focus{
 .inactiveButton {
     color: var(--inactive-color);
 }
+
+.inputButton input {
+    /* 원하는 스타일을 여기에 추가 */
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .addButton{
+    width: 20%;
+    padding: 10px;
+    border-radius: 5px;
+  }
