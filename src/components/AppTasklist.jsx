@@ -42,7 +42,6 @@ export default function AppTodolist() {
             handleAdd();
         }
     }
-
     // renderlist와 todolist의 상태값을 rendlist.map()안의 id값을 받아와서 삭제.
     const handleDelete = (todoListId) => {
         const newTodoList =
@@ -59,7 +58,7 @@ export default function AppTodolist() {
 
     // activeButton을 통해 All / active / done 버튼의 색을 변경.
     const getButtonStyle = (buttonId) => {
-        return activeButton === buttonId ? styles.activeButton : styles.inactiveButton;
+        return activeButton === buttonId ? styles.header__Button.active : styles.header__Button.inactive;
     };
     // renderlist와 todolist의 상태값을 비교해 같지않다면 renderlist에 todolist값을 넣어준 뒤 checked가 flase인 값을 삭제.
     const handleShowTrue = (buttonId) => {
@@ -98,34 +97,35 @@ export default function AppTodolist() {
     return (
         <div className={styles.container}>
             <div className={styles.main}>
-                <p className={styles.buttonline}>
+                <p className={styles.header}>
                     <span>
-                        <button onClick={handleDarkMode}><TiWeatherSunny /></button>
+                        <button className={styles.header__darkMode} onClick={handleDarkMode}><TiWeatherSunny /></button>
                     </span>
                     <span>
-                        <button className={`${styles.button} ${getButtonStyle(1)}`} onClick={() => handleShowAll(1)}>All</button>
-                        <button className={`${styles.button} ${getButtonStyle(2)}`} onClick={() => handleShowTrue(2)}>Active</button>
-                        <button className={`${styles.button} ${getButtonStyle(3)}`} onClick={() => handleShowFalse(3)}>Completed</button>
+                        <button className={styles.header__stateButton} onClick={() => handleShowAll()}>All</button>
+                        <button className={styles.header__stateButton} onClick={() => handleShowTrue()}>Active</button>
+                        <button className={styles.header__stateButton} onClick={() => handleShowFalse()}>Completed</button>
                     </span>
                 </p>
                 <ul>
                     {renderList.map((renderList) => (
                         <li key={renderList.id}>
                             <input className={styles.checkbox} type="checkbox" checked={renderList.checked} onChange={() => handleChange(renderList.id)} />
-                            <div className={styles.checkboxText}>{renderList.text}</div>
-                            <button className={styles['delete-button']} onClick={() => handleDelete(renderList.id)}><GrFormTrash /></button>
+                            <div className={styles.checkbox__text} >{renderList.text}</div>
+                            <button className={styles.deleteButton} onClick={() => handleDelete(renderList.id)}><GrFormTrash /></button>
                         </li>
                     ))}
                 </ul>
-                <div className={styles.inputButton}>
+                <div className={styles.footer}>
                     <input
+                        className={styles.input}
                         type='text'
-                        placeholder='Add Todo'
+                        placeholder='   Add Todo'
                         value={todoInput}
                         onChange={(e) => setTodoInput(e.target.value)}
                         onKeyPress={handleEnter}
                     />
-                    <button className={styles.addButton}onClick={handleAdd}>add</button>
+                    <button className={styles.inputButton}onClick={handleAdd}>Add</button>
                 </div>
             </div>
         </div>

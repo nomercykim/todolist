@@ -3,124 +3,155 @@
     --color-white: #ffffff;
     --color-black: #050a13;
     --color-blue: #03e8f9;
-    --color-gray: #1b1e26;
+    --color-grey: darkgrey;
+    --color-darkgrey:grey;
     --active-color: #fd6413; /* 활성화된 버튼의 색상 */
     --inactive-color: #ffffff; /* 비활성화된 버튼의 색상 */
+    --color-blue:lightblue;
 }
-*{
-    box-sizing: border-box;
-}
-ul{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto; /* 스크롤 기능 */
-}
-li{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .3rem;
-    color:var(--color-white);
-}
-
+/* container */
 .container{
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     height: 100vh;
-    width: 30vw;
-    background-color: #2C5364
+    background-color: var(--color-white);
 }
+
+/* main */
 .main{
-    width: 30vw;
-    height: 30vw;
+    width: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #203A43;
-    position: relative;
+    border-radius: 20px;
+    background-color: var(--color-grey);
+    position: absolute;
 }
-.buttonline{
-    height: 30px;
-    width: 30vw;
+
+/* header */
+.header{
+    position: absolute;
     display: flex;
     justify-content: space-between;
-    background-color: #0F2027
+    align-items: center;
+    height: 11%;
+    width: 100%;
+    top: 0;
+    background-color: var(--color-darkgrey);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transform: translate(0%, -30%);
 }
-.inputButton{
-    width: 30vw;
-    bottom: 0;
-    position: absolute;
-    background-color: #0F2027;
-    
+.header__darkMode{
+    border: none;
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    background-color: transparent;
+    padding :8px 16px;
+    color:var(--color-white);
+}
+.header__stateButton{
+    border: none;
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    background-color: transparent;
+    padding :8px 16px;
+    color: var(--color-white)
+}
+.header__stateButton:hover{
+    color: var(--color-grey);
 }
 
-.checkboxText {
+.header__stateButton.active{
+    border-bottom: 1px solid var(--color-blue);
+}
+
+/* body */
+ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0 0; 
+    margin: 0;
+    overflow-y: auto; /* 스크롤이 필요한 경우만 스크롤 표시 */
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+  }
+li {
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    flex-grow: 1;
-    text-align: left; /* 왼쪽 정렬 추가 */
+    padding: 10px;
+    color: var(--color-white);
 }
-
 
 .checkbox {
-    margin-right: 10px;
+ margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white; /* 기존 체크 박스 스타일 유지 */
+    border-radius: 4px; /* 체크 박스 테두리의 모서리를 둥글게 만듦 */
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    position: relative; /* 상대적인 위치 지정 */
 }
 
-.delete-button {
-    color: #ffffff;
+.checkbox:checked {
+    background-color: var(--color-darkgrey)
+}
+
+.checkbox__text {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* 체크박스와 텍스트가 남은 공간을 모두 차지하도록 함 */
+}
+
+.deleteButton{
     border: none;
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    background-color: transparent;
+    font-size: 20px;
+    color: var(--color-white);
+}
+.deleteButton:hover{
+    color: var(--color-darkgrey);
 }
 
-body{
+.body{
+
+}
+
+/* footer */
+.footer{
+    height: 13%;
+    width: 100%;
+    background-color: var(--color-darkgrey);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: absolute;
+    bottom:0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: 'Open Sans', sans-serif;
-    background-color: #2C5364;
-    color: var(--color-white);
 }
 
-h1,h2,h3,p,ul{
-    margin :0;
+.input{
+    border: none;
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    height: 30px;
+    width: 270px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
-ul{
-    list-style-type: none;
-    padding: 0;
+.inputButton{
+    border: none;
+    outline: none; /* 선택 시 발생하는 외곽선 제거 */
+    width: 90px;
+    height: 32px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: var(--color-grey);
+    color: white;
 }
-
-
-button{
-    background-color: transparent;
-    outline: 0;
-    border: 0;
-    color: var(--color-white);
-    cursor:pointer;
-}
-
-button:focus{
-    outline: 1px solid var(--color-gray);
-}
-
-.activeButton {
-    color: var(--active-color);
-}
-  
-.inactiveButton {
-    color: var(--inactive-color);
-}
-
-.inputButton input {
-    /* 원하는 스타일을 여기에 추가 */
-    width: 80%;
-    padding: 10px;
-    border-radius: 5px;
-  }
-
-  .addButton{
-    width: 20%;
-    padding: 10px;
-    border-radius: 5px;
-  }
